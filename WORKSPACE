@@ -25,3 +25,21 @@ nodejs_register_toolchains(
     name = "node",
     node_version = DEFAULT_NODE_VERSION,
 )
+
+load("@aspect_rules_js//npm:npm_import.bzl", "npm_translate_lock")
+
+npm_translate_lock(
+    name = "npm",
+    bins = {
+        # derived from "bin" attribute in node_modules/typescript/package.json
+        "typescript": {
+            "tsc": "./bin/tsc",
+            "tsserver": "./bin/tsserver",
+        },
+    },
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+
+load("@npm//:repositories.bzl", "npm_repositories")
+
+npm_repositories()
