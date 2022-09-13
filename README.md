@@ -10,3 +10,5 @@ bazel run //:ts # run the TypeScript code
 ```
 
 This branch uses Node's `--experimental-loader` API to automatically convert `@my_workspace/` imports to relative imports, preventing the need for manually adding all first-party packages to the root BUILD file.
+
+Additionally, it uses swc to compile the TypeScript.
