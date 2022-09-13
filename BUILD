@@ -1,7 +1,6 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project", "ts_config")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("@aspect_rules_js//npm:defs.bzl", "npm_link_package")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -17,18 +16,14 @@ ts_project(
         "main.ts",
     ],
     deps = [
-        "//:node_modules/@my_workspace/hello",
+        "//hello",
     ],
     tsconfig = ":tsconfig",
 )
 
 js_binary(
     name = "ts",
-    data = [":bin", "//:node_modules/@my_workspace/hello"],
+    data = [":bin", ":module-loader.mjs"],
+    node_options = ["--experimental-loader=$(execpath //:module-loader.mjs)"],
     entry_point = "main.js",
-)
-
-npm_link_package(
-    name = "node_modules/@my_workspace/hello",
-    src = "//hello",
 )

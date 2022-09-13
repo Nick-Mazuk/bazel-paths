@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "target": "ESNext",
+        "moduleResolution": "node16",
         "paths": {
             "@my_workspace/*": ["./*"]
         }
