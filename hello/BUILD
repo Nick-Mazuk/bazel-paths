@@ -9,8 +9,8 @@ load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 # corresponding to the root package '' and packages ['']
 # ```
 #
-# load("@npm//:defs.bzl", "npm_link_all_packages")
-# npm_link_all_packages(name = "node_modules")
+# load("@npm//:defs.bzl", "npm_link_package")
+# npm_link_package(name = "node_modules/@my_workspace/hello", src = ":hello")
 
 ts_project(
     name = "lib",
@@ -27,4 +27,3 @@ npm_package(
     package = "@my_workspace/hello",
     visibility = ["//visibility:public"],
 )
-
