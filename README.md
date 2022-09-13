@@ -9,4 +9,4 @@ bazel build //:ts # build the TypeScript code
 bazel run //:ts # run the TypeScript code
 ```
 
-Note: This method requires that you link every single target in the root BUILD file. Otherwise, the applicable Bazel targets will not be created.
+This branch uses Node's `--experimental-loader` API to automatically convert `@my_workspace/` imports to relative imports, preventing the need for manually adding all first-party packages to the root BUILD file.
